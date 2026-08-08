@@ -1,6 +1,10 @@
 import unittest
 
-from src.pricing import CartItem, calculate_subtotal
+from src.pricing import (
+    CartItem,
+    apply_percentage_discount,
+    calculate_subtotal,
+)
 
 
 class TestCalculateSubtotal(unittest.TestCase):
@@ -27,6 +31,12 @@ class TestCalculateSubtotal(unittest.TestCase):
         with self.assertRaises(ValueError):
             calculate_subtotal(items)
 
+    def test_zero_percent_keeps_subtotal(self):
+        self.assertEqual(apply_percentage_discount(100.00, 0), 100.00)
+
+    def test_rejects_percentage_above_100(self):
+        with self.assertRaises(ValueError):
+            apply_percentage_discount(100.00, 101)
 
 if __name__ == "__main__":
     unittest.main()
