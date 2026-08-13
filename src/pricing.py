@@ -31,4 +31,4 @@ def apply_percentage_discount(subtotal: float, percent: float) -> float:
     if percent < 0 or percent > 100:
         raise ValueError("Percent must be between 0 and 100")
 
-    return round(subtotal * (1 - percent), 2)
+    return round(subtotal * (1 - percent / 100), 2)
