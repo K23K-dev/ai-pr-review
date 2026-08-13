@@ -21,3 +21,14 @@ def calculate_subtotal(items: list[CartItem]) -> float:
         total += item.price * item.quantity
 
     return round(total, 2)
+
+def apply_percentage_discount(subtotal: float, percent: float) -> float:
+    """Apply a whole-number percentage where 10 represents 10%."""
+
+    if subtotal < 0:
+        raise ValueError("Subtotal cannot be negative")
+
+    if percent < 0 or percent > 100 or percent % 1 != 0:
+        raise ValueError("Percent must be a whole number between 0 and 100")
+
+    return round(subtotal * (1 - percent / 100), 2)
