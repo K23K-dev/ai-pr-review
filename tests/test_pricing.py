@@ -55,5 +55,9 @@ class TestCalculateSubtotal(unittest.TestCase):
     def test_rounds_discounted_total(self):
         self.assertEqual(apply_percentage_discount(10.01, 33), 6.71)
 
+    def test_rejects_fractional_percent(self):
+        with self.assertRaises(ValueError):
+            apply_percentage_discount(100.00, 10.5)
+
 if __name__ == "__main__":
     unittest.main()
